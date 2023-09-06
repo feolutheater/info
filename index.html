@@ -6,19 +6,5 @@
        <video id="fullscreen-video" autoplay controls>
         <source src="Logo_ani_hoch.mp4" type="video/mp4">
     </video>
-
-    <script>
-        var video = document.getElementById('fullscreen-video');
-
-        // Vollbildmodus aktivieren, wenn das Video abgespielt wird
-        video.addEventListener('play', function() {
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.mozRequestFullScreen) { // Firefox
-                video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) { // Chrome, Safari und Opera
-                video.webkitRequestFullscreen();
-            }
-        });
 </body>
 </html>
