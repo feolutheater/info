@@ -7,7 +7,7 @@
 </head>
 <body>
     <div id="video-container">
-        <video id="small-video" autoplay muted controls>
+        <video id="small-video" autoplay muted>
             <source src="Logo_ani_hoch.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -18,7 +18,7 @@
     </div>
 
     <script>
-        const smallVideo = document.getElementById('small-video');
+              const smallVideo = document.getElementById('small-video');
         const largeVideo = document.getElementById('large-video');
         const videoContainer = document.getElementById('video-container');
 
@@ -27,33 +27,16 @@
             smallVideo.requestFullscreen().then(() => {
                 // Once the small video has finished, play the large video
                 smallVideo.addEventListener('ended', () => {
-                    largeVideo.style.display = 'block';
-                    largeVideo.play();
+                    smallVideo.style.display = 'none'; // Hide the small video player
+                    largeVideo.style.display = 'block'; // Show the large video player
+                    largeVideo.play(); // Start playing the large video
                 });
             });
         });
 
-        // Hide the large video initially
-        largeVideo.style.display = 'none';
-
         // Loop the large video indefinitely
         largeVideo.addEventListener('ended', () => {
             largeVideo.play();
-        });
-
-        // Handle fullscreen change event to adjust video size
-        document.addEventListener('fullscreenchange', () => {
-            if (document.fullscreenElement === videoContainer) {
-                smallVideo.style.width = '100%';
-                smallVideo.style.height = '100%';
-                largeVideo.style.width = '100%';
-                largeVideo.style.height = '100%';
-            } else {
-                smallVideo.style.width = 'auto';
-                smallVideo.style.height = 'auto';
-                largeVideo.style.width = 'auto';
-                largeVideo.style.height = 'auto';
-            }
         });
     </script>
 </body>
