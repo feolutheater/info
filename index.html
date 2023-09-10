@@ -51,21 +51,15 @@
 
         <script>
         const video = document.getElementById('video');
-        const loadingGif = document.getElementById('loading-gif');         
+        const loadingGif = document.getElementById('loading-gif');
    
         // Function to hide the loading GIF and start the video
         function hideLoadingGif() {
             loadingGif.style.display = 'none';
             video.play();
         }
-            
-       // Wait for the video to be ready to play
-        function checkVideoState() {
-            
-        }
 
-        setTimeout(checkVideoState, 3000);
-        video.addEventListener('canplaythrough', hideLoadingGif);
+        setTimeout(video.addEventListener('canplaythrough', hideLoadingGif), 3000);
             
         // Request full screen after the video has started playing
         video.addEventListener('playing', () => {
