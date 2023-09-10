@@ -41,9 +41,9 @@
 <body>
     <div id="video-container">
         <div id="loading-gif">
-            <img src="loading.gif" alt="Loading...">
+            <img src="start.gif" alt="Loading...">
         </div>
-        <video id="video" controls autoplay loop muted>
+        <video id="video" controls autoplay muted>
             <source src="website_video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -53,10 +53,11 @@
         const video = document.getElementById('video');
         const loadingGif = document.getElementById('loading-gif');
 
-        // Hide the loading GIF after one loop of the GIF animation
-        const gifImage = loadingGif.querySelector('img');
-        gifImage.addEventListener('animationiteration', () => {
+        // Hide the loading GIF when the video is fully loaded
+        video.addEventListener('loadeddata', () => {
             loadingGif.style.display = 'none';
+
+            // Start playing the video
             video.play();
 
             // Request full screen after the video has started playing
