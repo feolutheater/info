@@ -59,7 +59,7 @@
             video.play();
         }
 
-        setTimeout(video.addEventListener('canplaythrough', hideLoadingGif), 3000);
+        setTimeout(video.addEventListener('canplaythrough', hideLoadingGif), 10000);
             
         // Request full screen after the video has started playing
         video.addEventListener('playing', () => {
