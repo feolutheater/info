@@ -52,7 +52,25 @@
         <script>
         const video = document.getElementById('video');
         const loadingGif = document.getElementById('loading-gif');
+        let videoLoaded = false;
 
+             // Function to hide the loading GIF and start the video
+        function hideLoadingGif() {
+            loadingGif.style.display = 'none';
+            if (videoLoaded) {
+                video.play();
+            }
+        }
+
+        // Wait for the video to be ready to play
+        video.addEventListener('canplaythrough', () => {
+            if (!videoLoaded) {
+                videoLoaded = true;
+                setTimeout(hideLoadingGif, 3000); // Wait 3 seconds after onloadstart
+            }
+        });
+            
+            <!--
         // Function to hide the loading GIF and start the video
         function hideLoadingGif() {
             loadingGif.style.display = 'none';
@@ -68,7 +86,8 @@
                 hideLoadingGif();
             }
         }, 3000);
-
+            -->
+                
         // Request full screen after the video has started playing
         video.addEventListener('playing', () => {
             if (video.requestFullscreen) {
@@ -78,6 +97,11 @@
             } else if (video.webkitRequestFullscreen) {
                 video.webkitRequestFullscreen();
             }
+        });
+
+             // Show loading GIF initially
+        video.addEventListener('loadstart', () => {
+            loadingGif.style.display = 'flex';
         });
     </script>
 
