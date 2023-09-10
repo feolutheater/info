@@ -51,32 +51,21 @@
 
         <script>
         const video = document.getElementById('video');
-        const loadingGif = document.getElementById('loading-gif');
-        let videoLoaded = false;
-
-             // Function to hide the loading GIF and start the video
-        function hideLoadingGif() {
-            loadingGif.style.display = 'none';
-            if (videoLoaded) {
-                video.play();
-            }
-        }
-
-        // Wait for the video to be ready to play
-        video.addEventListener('canplaythrough', () => {
-            if (!videoLoaded) {
-                videoLoaded = true;
-                setTimeout(hideLoadingGif, 3000); // Wait 3 seconds after onloadstart
-            }
-        });
-            
-            <!--
+        const loadingGif = document.getElementById('loading-gif');         
+   
         // Function to hide the loading GIF and start the video
         function hideLoadingGif() {
             loadingGif.style.display = 'none';
             video.play();
         }
-
+        function checkVideoState() {
+            // Wait for the video to be ready to play
+            video.addEventListener('canplaythrough', hideLoadingGif);
+        }
+        
+        setTimeout(checkVideoState, 8000);
+            
+            <!--
        // Wait for the video to be ready to play
         video.addEventListener('canplaythrough', hideLoadingGif);
 
@@ -86,7 +75,7 @@
                 hideLoadingGif();
             }
         }, 3000);
-            -->
+-->
                 
         // Request full screen after the video has started playing
         video.addEventListener('playing', () => {
@@ -99,10 +88,6 @@
             }
         });
 
-             // Show loading GIF initially
-        video.addEventListener('loadstart', () => {
-            loadingGif.style.display = 'flex';
-        });
     </script>
 
 </body>
