@@ -6,37 +6,28 @@
     <title>Feolu Theater</title>
 </head>
 <body>
-    <div id="video-container">
-        <video id="small-video" autoplay muted>
-            <source src="Logo_ani_hoch.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <video id="large-video" loop>
-            <source src="website_video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+    <video id="videoPlayer" autoplay controls>
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
     <script>
-        const smallVideo = document.getElementById('small-video');
-        const largeVideo = document.getElementById('large-video');
-        const videoContainer = document.getElementById('video-container');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoSource1 = 'Logo_ani_hoch.mp4';
+        const videoSource2 = 'website_video.mp4';
 
-        // Play the small video in full-screen mode
-        smallVideo.addEventListener('play', () => {
-            smallVideo.requestFullscreen().then(() => {
-                // Once the small video has finished, play the large video
-                smallVideo.addEventListener('ended', () => {
-                    smallVideo.style.display = 'none'; // Hide the small video player
-                    largeVideo.style.display = 'none'; // hide the large video player
-                    largeVideo.play(); // Start playing the large video
-                });
-            });
+        videoPlayer.addEventListener('ended', function () {
+            // Replace the first video with the second video
+            videoPlayer.src = videoSource2;
+            videoPlayer.load();
+            videoPlayer.play();
         });
 
-        // Loop the large video indefinitely
-        largeVideo.addEventListener('ended', () => {
-            largeVideo.play();
+        // Play the first video in fullscreen mode
+        videoPlayer.addEventListener('loadedmetadata', function () {
+            videoPlayer.requestFullscreen().then(() => {
+                videoPlayer.play();
+            });
         });
     </script>
 </body>
