@@ -1,10 +1,60 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>huhu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
 </head>
 <body>
-       <video id="fullscreen-video" autoplay controls muted>
-        <source src="Logo_ani_hoch.mp4" type="video/mp4">
-    </video>
+    <div id="video-container">
+        <video id="small-video" autoplay muted controls>
+            <source src="Logo_ani_hoch.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video id="large-video" loop>
+            <source src="website_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        const smallVideo = document.getElementById('small-video');
+        const largeVideo = document.getElementById('large-video');
+        const videoContainer = document.getElementById('video-container');
+
+        // Play the small video in full-screen mode
+        smallVideo.addEventListener('play', () => {
+            smallVideo.requestFullscreen().then(() => {
+                // Once the small video has finished, play the large video
+                smallVideo.addEventListener('ended', () => {
+                    largeVideo.style.display = 'block';
+                    largeVideo.play();
+                });
+            });
+        });
+
+        // Hide the large video initially
+        largeVideo.style.display = 'none';
+
+        // Loop the large video indefinitely
+        largeVideo.addEventListener('ended', () => {
+            largeVideo.play();
+        });
+
+        // Handle fullscreen change event to adjust video size
+        document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement === videoContainer) {
+                smallVideo.style.width = '100%';
+                smallVideo.style.height = '100%';
+                largeVideo.style.width = '100%';
+                largeVideo.style.height = '100%';
+            } else {
+                smallVideo.style.width = 'auto';
+                smallVideo.style.height = 'auto';
+                largeVideo.style.width = 'auto';
+                largeVideo.style.height = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>
