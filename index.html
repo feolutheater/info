@@ -11,9 +11,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            //height: 100vh;
-            width: 100%;
-            height: 100%;
+            height: 100vh;
             background-color: #000;
         }
         #video-container {
@@ -52,10 +50,17 @@
     </div>
 
         <script>
-        <Script Language=”JavaScript”>
+
         const video = document.getElementById('video');
         const loadingGif = document.getElementById('loading-gif');
-            
+
+        // Function to hide the loading GIF and start the video
+        function hideLoadingGif() {
+            loadingGif.style.display = 'none';
+            video.play();
+        }
+
+<!--
         var startDate = new Date();
         var startTime = startDate.getTime();
 
@@ -65,12 +70,6 @@
             var time_diff = time_now – startTime;
             var seconds_elapsed = Math.floor(time_diff/1000);
             return (seconds_elapsed);
-        }
-            
-        // Function to hide the loading GIF and start the video
-        function hideLoadingGif() {
-            loadingGif.style.display = 'none';
-            video.play();
         }
 
         function testTimePastedReadiness() {
@@ -83,6 +82,9 @@
         }
 
         video.addEventListener('canplaythrough', testTimePastedReadiness);
+-->
+
+        video.addEventListener('canplaythrough', hideLoadingGif);
             
         // Request full screen after the video has started playing
         video.addEventListener('playing', () => {
