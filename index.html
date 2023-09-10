@@ -60,10 +60,6 @@
             video.play();
         }
 
-        // Hide the loading GIF after one animation cycle (assuming it's a CSS animation)
-        const gifImage = loadingGif.querySelector('img');
-        gifImage.addEventListener('animationiteration', hideLoadingGif);
-
         // Wait for the video to be ready to play
         video.addEventListener('canplaythrough', hideLoadingGif);
 
@@ -79,34 +75,5 @@
         });
     </script>
 
-    <!--
-    <script>
-        const video = document.getElementById('video');
-        const loadingGif = document.getElementById('loading-gif');
-
-        // Function to hide the loading GIF after one animation cycle
-        function hideLoadingGif() {
-            loadingGif.style.display = 'none';
-            // Start playing the video
-            video.play();
-
-            // Request full screen after the video has started playing
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.mozRequestFullScreen) {
-                video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) {
-                video.webkitRequestFullscreen();
-            }
-        }
-
-        // Hide the loading GIF after one animation cycle (assuming it's a CSS animation)
-        const gifImage = loadingGif.querySelector('img');
-        gifImage.addEventListener('animationiteration', hideLoadingGif);
-
-        // Hide the loading GIF after a timeout (fallback in case animationiteration doesn't work)
-        setTimeout(hideLoadingGif, 5000); // Adjust the time (in milliseconds) as needed
-    </script>
-    -->
 </body>
 </html>
