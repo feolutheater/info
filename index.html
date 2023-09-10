@@ -22,11 +22,11 @@
 </head>
 <body>
     <div id="video-container">
-        <video id="small-video" autoplay muted>
+        <video id="small-video" muted>
             <source src="Logo_ani_hoch.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <video id="large-video" loop autoplay>
+        <video id="large-video" loop>
             <source src="website_video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -37,14 +37,14 @@
         const largeVideo = document.getElementById('large-video');
         const videoContainer = document.getElementById('video-container');
 
-        // Play the small video
-        smallVideo.addEventListener('play', () => {
-            // Once the small video has finished, hide it and play the large video
-            smallVideo.addEventListener('ended', () => {
-                smallVideo.style.display = 'none'; // Hide the small video
-                largeVideo.style.display = 'block'; // Show the large video
-                largeVideo.play(); // Start playing the large video
-            });
+        // Play the small video when the page is loaded
+        smallVideo.play();
+
+        // Once the small video has finished, hide it and play the large video
+        smallVideo.addEventListener('ended', () => {
+            smallVideo.style.display = 'none'; // Hide the small video
+            largeVideo.style.display = 'block'; // Show the large video
+            largeVideo.play(); // Start playing the large video
         });
 
         // Loop the large video indefinitely
