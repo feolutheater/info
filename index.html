@@ -28,7 +28,7 @@
                 // Once the small video has finished, play the large video
                 smallVideo.addEventListener('ended', () => {
                     smallVideo.style.display = 'none'; // Hide the small video player
-                    largeVideo.style.display = 'block'; // Show the large video player
+                    largeVideo.style.display = 'none'; // hide the large video player
                     largeVideo.play(); // Start playing the large video
                 });
             });
