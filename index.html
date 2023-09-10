@@ -61,12 +61,12 @@
             
        // Wait for the video to be ready to play
         function checkVideoState() {
-            video.addEventListener('canplaythrough', hideLoadingGif);
+            
         }
 
-        video.load();
-        setTimeout(checkVideoState, 2000);
-                
+        setTimeout(checkVideoState, 3000);
+        video.addEventListener('canplaythrough', hideLoadingGif);
+            
         // Request full screen after the video has started playing
         video.addEventListener('playing', () => {
             if (video.requestFullscreen) {
