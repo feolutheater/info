@@ -37,6 +37,39 @@
         const largeVideo = document.getElementById('large-video');
         const videoContainer = document.getElementById('video-container');
 
+        // Function to start playing the large video after the small video has finished
+        function startLargeVideo() {
+            smallVideo.style.display = 'none'; // Hide the small video
+            largeVideo.style.display = 'block'; // Show the large video
+            largeVideo.play(); // Start playing the large video
+        }
+
+        // Play the small video when the page is loaded
+        smallVideo.play();
+
+        // Once the small video has finished, start the large video
+        smallVideo.addEventListener('ended', startLargeVideo);
+
+        // Loop the large video indefinitely
+        largeVideo.addEventListener('ended', () => {
+            largeVideo.play();
+        });
+
+        // Check if the page was refreshed
+        window.addEventListener('beforeunload', () => {
+            // If the small video has not ended, prevent the large video from playing
+            if (!smallVideo.ended) {
+                largeVideo.pause();
+            }
+        });
+    </script>
+    
+    <!--
+    <script>
+        const smallVideo = document.getElementById('small-video');
+        const largeVideo = document.getElementById('large-video');
+        const videoContainer = document.getElementById('video-container');
+
         // Play the small video when the page is loaded
         smallVideo.play();
 
@@ -52,5 +85,6 @@
             largeVideo.play();
         });
     </script>
+    -->
 </body>
 </html>
