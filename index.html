@@ -49,8 +49,7 @@
         </video>
     </div>
 
-        <script>
-
+    <script>
         const video = document.getElementById('video');
         const loadingGif = document.getElementById('loading-gif');
 
@@ -59,30 +58,6 @@
             loadingGif.style.display = 'none';
             video.play();
         }
-
-<!--
-        var startDate = new Date();
-        var startTime = startDate.getTime();
-
-        function seconds_elapsed() {
-            var date_now = new Date();
-            var time_now = date_now.getTime();
-            var time_diff = time_now – startTime;
-            var seconds_elapsed = Math.floor(time_diff/1000);
-            return (seconds_elapsed);
-        }
-
-        function testTimePastedReadiness() {
-            var seconds_passed = seconds_elapsed();
-            if(seconds_passed < 1){
-                setTimeout(hideLoadingGif, 1000);
-            } else {
-                hideLoadingGif();
-            }
-        }
-
-        video.addEventListener('canplaythrough', testTimePastedReadiness);
--->
 
         video.addEventListener('canplaythrough', hideLoadingGif);
             
@@ -96,8 +71,6 @@
                 video.webkitRequestFullscreen();
             }
         });
-
     </script>
-
 </body>
 </html>
