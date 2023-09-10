@@ -22,13 +22,15 @@
         const largeVideo = document.getElementById('large-video');
         const videoContainer = document.getElementById('video-container');
 
-            // Play the small video
+        // Play the small video in full-screen mode
         smallVideo.addEventListener('play', () => {
-            // Once the small video has finished, play the large video
-            smallVideo.addEventListener('ended', () => {
-                smallVideo.style.display = 'none'; // Hide the small video player
-                largeVideo.style.display = 'block'; // Show the large video player
-                largeVideo.play(); // Start playing the large video
+            smallVideo.requestFullscreen().then(() => {
+                // Once the small video has finished, play the large video
+                smallVideo.addEventListener('ended', () => {
+                    smallVideo.style.display = 'none'; // Hide the small video player
+                    largeVideo.style.display = 'block'; // Show the large video player
+                    largeVideo.play(); // Start playing the large video
+                });
             });
         });
 
