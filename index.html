@@ -58,24 +58,13 @@
             loadingGif.style.display = 'none';
             video.play();
         }
+            
+       // Wait for the video to be ready to play
         function checkVideoState() {
-            // Wait for the video to be ready to play
             video.addEventListener('canplaythrough', hideLoadingGif);
         }
         
         setTimeout(checkVideoState, 8000);
-            
-            <!--
-       // Wait for the video to be ready to play
-        video.addEventListener('canplaythrough', hideLoadingGif);
-
-        // Show loading GIF for at least 3 seconds
-        setTimeout(() => {
-            if (!video.readyState || video.readyState >= 3) {
-                hideLoadingGif();
-            }
-        }, 3000);
--->
                 
         // Request full screen after the video has started playing
         video.addEventListener('playing', () => {
