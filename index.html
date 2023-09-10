@@ -49,6 +49,36 @@
         </video>
     </div>
 
+        <script>
+        const video = document.getElementById('video');
+        const loadingGif = document.getElementById('loading-gif');
+
+        // Function to hide the loading GIF and start the video
+        function hideLoadingGif() {
+            loadingGif.style.display = 'none';
+            video.play();
+        }
+
+        // Hide the loading GIF after one animation cycle (assuming it's a CSS animation)
+        const gifImage = loadingGif.querySelector('img');
+        gifImage.addEventListener('animationiteration', hideLoadingGif);
+
+        // Wait for the video to be ready to play
+        video.addEventListener('canplaythrough', hideLoadingGif);
+
+        // Request full screen after the video has started playing
+        video.addEventListener('playing', () => {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) {
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            }
+        });
+    </script>
+
+    <!--
     <script>
         const video = document.getElementById('video');
         const loadingGif = document.getElementById('loading-gif');
@@ -75,31 +105,6 @@
 
         // Hide the loading GIF after a timeout (fallback in case animationiteration doesn't work)
         setTimeout(hideLoadingGif, 5000); // Adjust the time (in milliseconds) as needed
-    </script>
-    
-    <!--
-    <script>
-        const video = document.getElementById('video');
-        const loadingGif = document.getElementById('loading-gif');
-
-        // Hide the loading GIF when the video is fully loaded
-        video.addEventListener('loadeddata', () => {
-            loadingGif.style.display = 'none';
-
-            // Start playing the video
-            video.play();
-
-            // Request full screen after the video has started playing
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.mozRequestFullScreen) {
-                video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) {
-                video.webkitRequestFullscreen();
-            }
-        });
-
-        // You can also add other event listeners for playback events, e.g., play, pause, etc.
     </script>
     -->
 </body>
