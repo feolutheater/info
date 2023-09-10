@@ -11,7 +11,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            //height: 100vh;
+            width: 100%;
+            height: 100%;
             background-color: #000;
         }
         #video-container {
@@ -23,7 +25,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            // display: flex;
+            display: flex;
             justify-content: center;
             align-items: center;
             background-color: rgba(255, 255, 255, 0.5);
@@ -50,6 +52,7 @@
     </div>
 
         <script>
+        <Script Language=”JavaScript”>
         const video = document.getElementById('video');
         const loadingGif = document.getElementById('loading-gif');
             
@@ -72,9 +75,9 @@
 
         function testTimePastedReadiness() {
             var seconds_passed = seconds_elapsed();
-            if(seconds_passed<1){
-                setTimeout(hideLoadingGif, 2000);
-                } else {
+            if(seconds_passed < 1){
+                setTimeout(hideLoadingGif, 1000);
+            } else {
                 hideLoadingGif();
             }
         }
