@@ -3,18 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feolu Theater</title>
+    <title>Feoulu Theater</title>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
         #video-container {
             position: relative;
-            width: 100%;
-            height: 100vh;
         }
-
-        video {
+        #loading-gif {
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #loading-gif img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+        #video {
             width: 100%;
             height: 100%;
         }
@@ -22,69 +40,36 @@
 </head>
 <body>
     <div id="video-container">
-        <video id="small-video" muted>
-            <source src="Logo_ani_hoch.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <video id="large-video" loop>
+        <div id="loading-gif">
+            <img src="loading.gif" alt="Loading...">
+        </div>
+        <video id="video" controls autoplay loop muted>
             <source src="website_video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
 
     <script>
-        const smallVideo = document.getElementById('small-video');
-        const largeVideo = document.getElementById('large-video');
-        const videoContainer = document.getElementById('video-container');
+        const video = document.getElementById('video');
+        const loadingGif = document.getElementById('loading-gif');
 
-        // Function to start playing the large video after the small video has finished
-        function startLargeVideo() {
-            smallVideo.style.display = 'none'; // Hide the small video
-            largeVideo.style.display = 'block'; // Show the large video
-            largeVideo.play(); // Start playing the large video
-        }
+        // Hide the loading GIF after one loop of the GIF animation
+        const gifImage = loadingGif.querySelector('img');
+        gifImage.addEventListener('animationiteration', () => {
+            loadingGif.style.display = 'none';
+            video.play();
 
-        // Play the small video when the page is loaded
-        smallVideo.play();
-
-        // Once the small video has finished, start the large video
-        smallVideo.addEventListener('ended', startLargeVideo);
-
-        // Loop the large video indefinitely
-        largeVideo.addEventListener('ended', () => {
-            largeVideo.play();
-        });
-
-        // Check if the page was refreshed
-        window.addEventListener('beforeunload', () => {
-            // If the small video has not ended, prevent the large video from playing
-            if (!smallVideo.ended) {
-                largeVideo.pause();
+            // Request full screen after the video has started playing
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) {
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
             }
         });
+
+        // You can also add other event listeners for playback events, e.g., play, pause, etc.
     </script>
-    
-    <!--
-    <script>
-        const smallVideo = document.getElementById('small-video');
-        const largeVideo = document.getElementById('large-video');
-        const videoContainer = document.getElementById('video-container');
-
-        // Play the small video when the page is loaded
-        smallVideo.play();
-
-        // Once the small video has finished, hide it and play the large video
-        smallVideo.addEventListener('ended', () => {
-            smallVideo.style.display = 'none'; // Hide the small video
-            largeVideo.style.display = 'block'; // Show the large video
-            largeVideo.play(); // Start playing the large video
-        });
-
-        // Loop the large video indefinitely
-        largeVideo.addEventListener('ended', () => {
-            largeVideo.play();
-        });
-    </script>
-    -->
 </body>
 </html>
